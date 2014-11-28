@@ -1,4 +1,4 @@
-(ns doubleslit.core
+(ns hello-quil.core
   (:require [quil.core :as q :include-macros true]
             [quil.middleware :as m]))
 
@@ -32,8 +32,8 @@
       ; Draw the circle.
       (q/ellipse x y 100 100))))
 
-(q/defsketch doubleslit
-  :host "doubleslit"
+(q/defsketch hello-quil
+  :host "hello-quil"
   :size [500 500]
   ; setup function called only once, during sketch initialization.
   :setup setup
