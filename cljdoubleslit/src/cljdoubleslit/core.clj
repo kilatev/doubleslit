@@ -1,5 +1,5 @@
-(ns doubleslit.core
-  (:require [quil.core :as q :include-macros true]
+(ns cljdoubleslit.core
+  (:require [quil.core :as q]
             [quil.middleware :as m]))
 
 (defn setup []
@@ -14,27 +14,27 @@
 
 (defn update [state]
   ; Update sketch state by changing circle color and position.
-  {:color (mod (+ (:color state) 0.7) 225)
+  {:color (mod (+ (:color state) 0.7) 255)
    :angle (+ (:angle state) 0.1)})
 
 (defn draw [state]
   ; Clear the sketch by filling it with light-grey color.
   (q/background 240)
   ; Set circle color.
-  (q/fill (:col`or state) 255 255)
+  (q/fill (:color state) 255 255)
   ; Calculate x and y coordinates of the circle.
   (let [angle (:angle state)
-        x (* 100 (q/cos angle))
-        y (* 250 (q/sin angle))]
+        x (* 50 (q/cos angle))
+        y (* 50 (q/sin angle))]
     ; Move origin point to the center of the sketch.
     (q/with-translation [(/ (q/width) 2)
                          (/ (q/height) 2)]
       ; Draw the circle.
       (q/ellipse x y 100 100))))
 
-(q/defsketch doubleslit
-  :host "doubleslit"
-  :size [500 500]
+(q/defsketch cljdoubleslit
+  :title "You spin my circle right round"
+  :size [200 200]
   ; setup function called only once, during sketch initialization.
   :setup setup
   ; update is called on each iteration before draw is called.
